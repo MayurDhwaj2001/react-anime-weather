@@ -1,177 +1,267 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
-body {
-  font-family: "Poppins", sans-serif;
-  user-select: none;
-  margin: 0;
-  padding: 0;
-  color: aliceblue;
+.body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #1a1a1a, #333);
+  margin: 0px;
+  padding: 0px;
 }
 
 .container {
-  min-height: 100vh;
-  background-image: url(./assets/images/wall/day/sunny.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  opacity: 1;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0px;
-}
-
-.red {
-  background-color: rgb(255, 0, 0);
-}
-
-.blue {
-  background-color: rgb(72, 0, 255);
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
+  width: 80%;
+  max-width: 1200px;
+  min-height: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .weather {
-  width: 70%;
-  height: 100%;
-  /* background-color: aqua; */
-}
-.info {
-  width: 30%;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.767);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 20px;
 }
 
-.logo {
-  margin-bottom: 50%;
-  margin-top: 10px;
-  margin-left: 15px;
-}
-
-.num {
-  font-size: 80px;
-}
-
-.img {
-  display: flex;
-  height: 60px;
+.logo h1 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  font-weight: 600;
 }
 
 .temprature {
-  margin-left: 20px;
-  position: absolute;
-  bottom: 0;
+  align-items: center;
+}
+
+.celcius {
+  flex: 1;
+}
+
+.celcius .num {
+  font-size: 4em;
+  font-weight: 700;
 }
 
 .location {
-  margin-left: 40px;
-  margin-top: 20px;
-}
-
-.pic {
-  margin-left: 40px;
-  margin-top: 10px;
+  flex: 2;
   text-align: center;
 }
 
-input {
-  border: none;
-  background-color: rgba(255, 255, 255, 0);
-  border-bottom: 1px solid rgb(255, 255, 255) !important;
-  outline: none;
-  width: 85%;
-  height: 40px;
-  margin-top: 5px;
-  padding-left: 15px;
-  color: rgb(255, 255, 255);
-  font-size: 25px;
-}
-input[type="text"]:focus {
-  border: 0px solid rgba(255, 255, 255, 0) !important;
+.location h1 {
+  font-size: 1.8em;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-input::placeholder {
-  color: rgb(255, 255, 255);
-  font-family: "Poppins", sans-serif;
-  font-style: italic;
+.location h5 {
+  font-size: 1em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-button {
-  width: 15%;
-  height: 50px;
+.pic {
+  flex: 1;
+  text-align: right;
+}
+
+.pic img {
+  margin-bottom: 10px;
+}
+
+.pic h5 {
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 .info {
-  width: 30%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .nav {
-  width: 100%;
-  justify-content: left;
-  /* align-items: center; */
-}
-
-.weatherinfo {
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.btn {
-  margin-right: 10px;
-  background-color: rgba(255, 255, 255, 0);
-  border: 0;
-  width: auto;
-  color: rgb(252, 254, 255);
-  font-size: 25px;
-  text-align: left;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.456);
-}
-
-.line {
-  border-top: 1px solid rgb(255, 255, 255);
-  margin-right: 40px;
-  margin-left: 30px;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.right {
-  display: flex;
-  text-align: right;
-  /* justify-content: right; */
-  justify-items: right;
-  margin-right: 10px;
-  margin-left: auto;
+.nav input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1em;
 }
 
-.temp-preview {
-  padding-left: 10px;
+.nav input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.search {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.search i {
+  color: white;
+  font-size: 1.2em;
 }
 
 .city-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn.active {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.city-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
-.each-city {
+
+.temperatures {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.temperatures div:last-child {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+}
+
+.line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 20px 0;
+}
+
+.det {
+  color: white;
+}
+
+.det .col h1 {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.det .right {
+  text-align: right;
+}
+
+.det .right h1 span {
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .weather,
+  .info {
+    width: 100%;
+  }
+
+  .celcius .num {
+    font-size: 3em;
+  }
+
+  .location h1 {
+    font-size: 1.5em;
+  }
+
+  .city-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .logo h1 {
+    font-size: 2em;
+  }
+
+  .celcius .num {
+    font-size: 2.5em;
+  }
+
+  .location h1 {
+    font-size: 1.2em;
+  }
+
+  .det .col h1 {
+    font-size: 1em;
+  }
+
+  .city-container {
+    grid-template-columns: 1fr;
+  }
 }

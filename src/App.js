@@ -31,14 +31,15 @@ if (!API_KEY) {
 
 const API_URL =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const FORECAST_API_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
 const INDIAN_METROS = [
-  "Delhi",
-  "Mumbai",
-  "Chennai",
-  "Bengaluru",
-  "Kolkata",
-  "Hyderabad",
+  { name: "Delhi", lat: 28.679079, lon: 77.06971 },
+  { name: "Mumbai", lat: 19.07609, lon: 72.877426 },
+  { name: "Chennai", lat: 13.0843, lon: 80.27 },
+  { name: "Bengaluru", lat: 12.9716, lon: 77.5946 },
+  { name: "Kolkata", lat: 22.5744, lon: 88.3629 },
+  { name: "Hyderabad", lat: 17.443649, lon: 78.445824 },
 ];
 
 const UPDATE_INTERVAL = 300000;
@@ -81,6 +82,7 @@ function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [searchCity, setSearchCity] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [fiveDayAverages, setFiveDayAverages] = useState({});
   const [weatherData, setWeatherData] = useState({
     temp: "~~",
     city: "~~",
@@ -96,7 +98,6 @@ function App() {
     return weatherIcons[condition] || clearIcon;
   };
 
-  // To Check It's Day or Night
   const updateBackgroundImage = (condition) => {
     const container = document.getElementById("container");
     const isDay = currentTime.getHours() >= 6 && currentTime.getHours() <= 18;
@@ -106,6 +107,57 @@ function App() {
       backgroundImages[timeOfDay].Clear;
 
     container.style.backgroundImage = `url(${backgroundImage})`;
+  };
+
+  const calculateDailyAverages = (forecastList) => {
+    // Group forecasts by day
+    const dailyForecasts = {};
+
+    forecastList.forEach((forecast) => {
+      const date = new Date(forecast.dt * 1000).toLocaleDateString();
+      if (!dailyForecasts[date]) {
+        dailyForecasts[date] = [];
+      }
+      dailyForecasts[date].push(forecast.main.temp);
+    });
+
+    // Calculate average for each day
+    const dailyAverages = Object.entries(dailyForecasts).map(
+      ([date, temps]) => {
+        const avg = temps.reduce((sum, temp) => sum + temp, 0) / temps.length;
+        return { date, avgTemp: Math.round(avg) };
+      }
+    );
+
+    // Return overall average of daily averages
+    const overallAverage = Math.round(
+      dailyAverages.reduce((sum, day) => sum + day.avgTemp, 0) /
+        dailyAverages.length
+    );
+
+    return overallAverage;
+  };
+
+  const fetchFiveDayForecast = async () => {
+    const averages = {};
+
+    for (const city of INDIAN_METROS) {
+      try {
+        const response = await fetch(
+          `${FORECAST_API_URL}?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${API_KEY}`
+        );
+        const data = await response.json();
+
+        if (data.list) {
+          averages[city.name] = calculateDailyAverages(data.list);
+        }
+      } catch (error) {
+        console.error(`Error fetching forecast for ${city.name}:`, error);
+        averages[city.name] = null;
+      }
+    }
+
+    setFiveDayAverages(averages);
   };
 
   const fetchCityWeather = async (city) => {
@@ -133,9 +185,9 @@ function App() {
   const fetchMetrosWeather = async () => {
     const weatherData = {};
     for (const city of INDIAN_METROS) {
-      const cityWeather = await fetchCityWeather(city);
+      const cityWeather = await fetchCityWeather(city.name);
       if (cityWeather) {
-        weatherData[city] = cityWeather;
+        weatherData[city.name] = cityWeather;
       }
     }
     setMetrosWeather(weatherData);
@@ -148,7 +200,11 @@ function App() {
 
   useEffect(() => {
     fetchMetrosWeather();
-    const interval = setInterval(fetchMetrosWeather, UPDATE_INTERVAL);
+    fetchFiveDayForecast();
+    const interval = setInterval(() => {
+      fetchMetrosWeather();
+      fetchFiveDayForecast();
+    }, UPDATE_INTERVAL);
     return () => clearInterval(interval);
   }, []);
 
@@ -253,16 +309,23 @@ function App() {
             <div className="city-container">
               {INDIAN_METROS.map((city) => (
                 <button
-                  key={city}
-                  className={`btn ${selectedCity === city ? "active" : ""}`}
-                  onClick={() => handleMetroSelect(city)}
+                  key={city.name}
+                  className={`btn ${
+                    selectedCity === city.name ? "active" : ""
+                  }`}
+                  onClick={() => handleMetroSelect(city.name)}
                 >
-                  {city}
-                  {metrosWeather[city] && (
-                    <span className="temp-preview">
-                      {metrosWeather[city].temp}°C
-                    </span>
-                  )}
+                  <div className="city-info">
+                    <div>{city.name}</div>
+                    {metrosWeather[city.name] && (
+                      <div className="temperatures">
+                        <div>Now: {metrosWeather[city.name].temp}°C</div>
+                        {fiveDayAverages[city.name] && (
+                          <div>5-day avg: {fiveDayAverages[city.name]}°C</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
