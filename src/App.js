@@ -89,12 +89,14 @@ function App() {
     windspeed: "~~",
     details: "~~~~",
     weatherImage: clearIcon,
+    feels_like: "~~",
   });
 
   const getWeatherImage = (condition) => {
     return weatherIcons[condition] || clearIcon;
   };
 
+  // To Check It's Day or Night
   const updateBackgroundImage = (condition) => {
     const container = document.getElementById("container");
     const isDay = currentTime.getHours() >= 6 && currentTime.getHours() <= 18;
@@ -120,6 +122,7 @@ function App() {
         windspeed: data.wind.speed,
         details: weatherCondition,
         weatherImage: getWeatherImage(weatherCondition),
+        feels_like: Math.round(data.main.feels_like),
       };
     } catch (error) {
       console.error(`Error fetching weather for ${city}:`, error);
@@ -247,7 +250,7 @@ function App() {
             </button>
           </div>
           <div className="weatherinfo col">
-            <div className="metros-grid">
+            <div className="city-container">
               {INDIAN_METROS.map((city) => (
                 <button
                   key={city}
@@ -268,6 +271,7 @@ function App() {
               <div className="col">
                 <h1>Humidity </h1>
                 <h1>Wind </h1>
+                <h1>Feels Like </h1>
               </div>
               <div className="col right">
                 <h1>
@@ -275,6 +279,9 @@ function App() {
                 </h1>
                 <h1>
                   <span>{weatherData.windspeed}</span>mph
+                </h1>
+                <h1>
+                  <span>{weatherData.feels_like}</span>°C
                 </h1>
               </div>
             </div>

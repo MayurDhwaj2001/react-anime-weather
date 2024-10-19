@@ -166,3 +166,12 @@ button {
 .temp-preview {
   padding-left: 10px;
 }
+
+.city-container {
+  display: flex;
+  flex-direction: column;
+}
+.each-city {
+  display: flex;
+  flex-direction: row;
+}
