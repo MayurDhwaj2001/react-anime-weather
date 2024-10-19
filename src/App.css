@@ -162,3 +162,7 @@ button {
   margin-right: 10px;
   margin-left: auto;
 }
+
+.temp-preview {
+  padding-left: 10px;
+}
