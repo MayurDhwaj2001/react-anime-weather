@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
@@ -333,7 +334,7 @@ function App() {
             <div className="row det">
               <div className="col">
                 <h1>Humidity </h1>
-                <h1>Wind </h1>
+                <h1>Wind Speed </h1>
                 <h1>Feels Like </h1>
               </div>
               <div className="col right">
@@ -356,3 +357,9 @@ function App() {
 }
 
 export default App;
+
+//
+//
+//
+//
+// code is working

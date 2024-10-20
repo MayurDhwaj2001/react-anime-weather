@@ -13,7 +13,8 @@
   width: 80%;
   max-width: 1200px;
   min-height: 500px;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: url(./assets/images/wall/day/sunny.jpg);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 30px;
@@ -92,9 +93,15 @@
 }
 
 .info {
-  background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   padding: 20px;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.7px);
+  -webkit-backdrop-filter: blur(4.7px);
 }
 
 .nav {
@@ -109,6 +116,12 @@
   background: rgba(255, 255, 255, 0.3);
   color: white;
   font-size: 1em;
+
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
 }
 
 .nav input::placeholder {
@@ -128,6 +141,12 @@
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: background 0.3s ease;
+
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
 }
 
 .search:hover {
@@ -150,14 +169,22 @@
   padding: 15px;
   border: none;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #333;
+  font-weight: 900;
+
   cursor: pointer;
   transition: all 0.3s ease;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  /* background: rgba(255, 255, 255, 0.3); */
   transform: translateY(-2px);
 }
 
@@ -178,12 +205,14 @@
   flex-direction: column;
   align-items: center;
   font-size: 0.9em;
-  color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-weight: 100;
 }
 
 .temperatures div:last-child {
-  color: rgba(255, 255, 255, 0.7);
   font-size: 0.9em;
+  color: #333;
+  font-weight: 100;
 }
 
 .line {
