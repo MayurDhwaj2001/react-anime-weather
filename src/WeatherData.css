@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.weather-dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #005f73;
+}
+
+/* Weather Card Styles */
+.weather-card {
+  background-color: #e0f7fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+.city-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.city-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #00796b;
+}
+
+.country-name {
+  font-size: 16px;
+  color: #004d40;
+}
+
+.weather-data-container {
+  margin-top: 10px;
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.data-label {
+  font-weight: bold;
+}
+
+.data-value {
+  font-size: 16px;
+  color: #00796b;
+}
+
+.temperature-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #757575;
+  text-align: right;
+}
+
+/* Weather Tag Styles */
+.weather-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.weather-tag-sunny {
+  background-color: #ffa726;
+}
+
+.weather-tag-cloudy {
+  background-color: #90a4ae;
+}
+
+.weather-tag-rainy {
+  background-color: #42a5f5;
+}
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #1976d2;
+}
+
+.error-message {
+  font-size: 18px;
+  color: #d32f2f;
+}
+
+.error-suggestion {
+  font-size: 14px;
+  color: #757575;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .weather-card {
+    margin-bottom: 10px;
+  }
+}
